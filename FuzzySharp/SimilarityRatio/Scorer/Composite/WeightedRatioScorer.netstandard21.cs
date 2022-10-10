@@ -9,7 +9,7 @@ namespace FuzzySharp.SimilarityRatio.Scorer.Composite
         private static double PARTIAL_SCALE = .90;
         private static bool TRY_PARTIALS = true;
 
-        public override int Score(string input1, string input2)
+        public override int Score(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2)
         {
             int len1 = input1.Length;
             int len2 = input2.Length;

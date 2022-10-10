@@ -49,12 +49,43 @@ namespace FuzzySharp.Test.FuzzyTests
         }
 
         [Test]
+        public void TestGetBestChoiceChoice0()
+        {
+            var query = "new york mets at atlanta braves";
+            var best = Fuzz.WeightedRatio(query, _baseballStrings[0]);
+            Assert.AreEqual(63, best);
+        }
+
+        [Test]
+        public void TestGetBestChoiceChoice1()
+        {
+            var query = "new york mets at atlanta braves";
+            var best = Fuzz.WeightedRatio(query, _baseballStrings[1]);
+            Assert.AreEqual(29, best);
+        }
+
+        [Test]
+        public void TestGetBestChoiceChoice2()
+        {
+            var query = "new york mets at atlanta braves";
+            var best = Fuzz.WeightedRatio(query, _baseballStrings[2]);
+            Assert.AreEqual(59, best);
+        }
+
+        [Test]
+        public void TestGetBestChoiceChoice3()
+        {
+            var query = "new york mets at atlanta braves";
+            var best = Fuzz.WeightedRatio(query, _baseballStrings[3]);
+            Assert.AreEqual(75, best);
+        }
+
+        [Test]
         public void TestGetBestChoice1()
         {
             var query = "new york mets at atlanta braves";
             var best  = Process.ExtractOne(query, _baseballStrings);
-            Assert.AreEqual(best.Value, "braves vs mets");
-
+            Assert.AreEqual("braves vs mets", best.Value);
         }
 
         [Test]
@@ -62,7 +93,7 @@ namespace FuzzySharp.Test.FuzzyTests
         {
             var query = "philadelphia phillies at atlanta braves";
             var best  = Process.ExtractOne(query, _baseballStrings);
-            Assert.AreEqual(best.Value, _baseballStrings[2]);
+            Assert.AreEqual(_baseballStrings[2], best.Value);
 
         }
 
@@ -71,7 +102,7 @@ namespace FuzzySharp.Test.FuzzyTests
         {
             var query = "atlanta braves at philadelphia phillies";
             var best  = Process.ExtractOne(query, _baseballStrings);
-            Assert.AreEqual(best.Value, _baseballStrings[2]);
+            Assert.AreEqual(_baseballStrings[2], best.Value);
 
         }
 
@@ -80,7 +111,7 @@ namespace FuzzySharp.Test.FuzzyTests
         {
             var query = "chicago cubs vs new york mets";
             var best  = Process.ExtractOne(query, _baseballStrings);
-            Assert.AreEqual(best.Value, _baseballStrings[0]);
+            Assert.AreEqual(_baseballStrings[0], best.Value);
 
         }
 
@@ -96,7 +127,7 @@ namespace FuzzySharp.Test.FuzzyTests
             var query = new[] { "new york mets vs chicago cubs", "CitiField", "2017-03-19", "8pm" };
 
             var best = Process.ExtractOne(query, events, strings => strings[0]);
-            Assert.AreEqual(best.Value, events[0]);
+            Assert.AreEqual(events[0], best.Value);
         }
 
         [Test]
@@ -125,15 +156,15 @@ namespace FuzzySharp.Test.FuzzyTests
             // 'complete' match of choices[1]"
 
             var best = Process.ExtractOne(query, choices);
-            Assert.AreEqual(best.Value, choices[1]);
+            Assert.AreEqual(choices[1], best.Value);
 
             // now, use the custom scorer
 
             best = Process.ExtractOne(query, choices, null, ScorerCache.Get<DefaultRatioScorer>());
-            Assert.AreEqual(best.Value, choices[0]);
+            Assert.AreEqual(choices[0], best.Value);
 
             best = Process.ExtractOne(query, choicesDict.Select(k => k.Value));
-            Assert.AreEqual(best.Value, choicesDict[1]);
+            Assert.AreEqual(choicesDict[1], best.Value);
 
         }
 
@@ -199,7 +230,7 @@ namespace FuzzySharp.Test.FuzzyTests
             var query = "new york mets at chicago cubs";
 
             var best = Process.ExtractOne(query, choices);
-            Assert.AreEqual(best.Value, choices[1]);
+            Assert.AreEqual(choices[1], best.Value);
         }
 
 //[Test]

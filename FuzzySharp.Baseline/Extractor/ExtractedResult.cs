@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FuzzySharp.Extractor
+namespace FuzzySharp.Baseline.Extractor
 {
     public class ExtractedResult<T> : IComparable<ExtractedResult<T>> 
     {
@@ -28,6 +28,13 @@ namespace FuzzySharp.Extractor
             return Comparer<int>.Default.Compare(this.Score, other.Score);
         }
 
-        public override string ToString() => $"(value: {Value}, score: {Score}, index: {Index})";
+        public override string ToString()
+        {
+            if (typeof(T) == typeof(string))
+            {
+                return $"(string: {Value}, score: {Score}, index: {Index})";
+            }
+            return $"(value: {Value.ToString()}, score: {Score}, index: {Index})";
+        }
     }
 }

@@ -75,29 +75,29 @@ namespace FuzzySharp.Test.FuzzyTests
         [Test]
         public void TestPartialTokenSortRatio()
         {
-            Assert.AreEqual(Fuzz.PartialTokenSortRatio(_s1, _s1A, PreprocessMode.Full), 100);
-            Assert.AreEqual(Fuzz.PartialTokenSortRatio(_s4, _s5, PreprocessMode.Full), 100);
-            Assert.AreEqual(Fuzz.PartialTokenSortRatio(_s8, _s8A), 100);
-            Assert.AreEqual(Fuzz.PartialTokenSortRatio(_s9, _s9A, PreprocessMode.Full), 100);
-            Assert.AreEqual(Fuzz.PartialTokenSortRatio(_s9, _s9A), 100);
-            Assert.AreEqual(Fuzz.PartialTokenSortRatio(_s10, _s10A), 50);
+            Assert.AreEqual(100, Fuzz.PartialTokenSortRatio(_s1, _s1A, PreprocessMode.Full));
+            Assert.AreEqual(100, Fuzz.PartialTokenSortRatio(_s4, _s5, PreprocessMode.Full));
+            Assert.AreEqual(100, Fuzz.PartialTokenSortRatio(_s8, _s8A));
+            Assert.AreEqual(100, Fuzz.PartialTokenSortRatio(_s9, _s9A, PreprocessMode.Full));
+            Assert.AreEqual(100, Fuzz.PartialTokenSortRatio(_s9, _s9A));
+            Assert.AreEqual(50, Fuzz.PartialTokenSortRatio(_s10, _s10A));
         }
 
         [Test]
         public void TestTokenSetRatio()
         {
-            Assert.AreEqual(Fuzz.TokenSetRatio(_s4, _s5, PreprocessMode.Full), 100);
-            Assert.AreEqual(Fuzz.TokenSetRatio(_s8, _s8A), 100);
-            Assert.AreEqual(Fuzz.TokenSetRatio(_s9, _s9A, PreprocessMode.Full), 100);
-            Assert.AreEqual(Fuzz.TokenSetRatio(_s9, _s9A), 100);
-            Assert.AreEqual(Fuzz.TokenSetRatio(_s10, _s10A), 50);
+            Assert.AreEqual(100, Fuzz.TokenSetRatio(_s4, _s5, PreprocessMode.Full));
+            Assert.AreEqual(100, Fuzz.TokenSetRatio(_s8, _s8A));
+            Assert.AreEqual(100, Fuzz.TokenSetRatio(_s9, _s9A, PreprocessMode.Full));
+            Assert.AreEqual(100, Fuzz.TokenSetRatio(_s9, _s9A));
+            Assert.AreEqual(50, Fuzz.TokenSetRatio(_s10, _s10A));
         }
 
         [Test]
         public void TestTokenAbbreviationRatio()
         {
-            Assert.AreEqual(Fuzz.TokenAbbreviationRatio("bl 420", "Baseline section 420", PreprocessMode.Full), 40);
-            Assert.AreEqual(Fuzz.PartialTokenAbbreviationRatio("bl 420", "Baseline section 420", PreprocessMode.Full), 50);
+            Assert.AreEqual(40, Fuzz.TokenAbbreviationRatio("bl 420", "Baseline section 420", PreprocessMode.Full));
+            Assert.AreEqual(50, Fuzz.PartialTokenAbbreviationRatio("bl 420", "Baseline section 420", PreprocessMode.Full));
         }
 
         [Test]
