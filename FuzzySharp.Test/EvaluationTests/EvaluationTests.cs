@@ -1,7 +1,12 @@
-﻿using FuzzySharp.PreProcess;
+﻿using FluentAssertions;
+using FuzzySharp.PreProcess;
 using FuzzySharp.SimilarityRatio;
 using FuzzySharp.SimilarityRatio.Scorer.Composite;
 using FuzzySharp.SimilarityRatio.Scorer.StrategySensitive;
+using FuzzySharp.SimilarityRatio.Scorer.StrategySensitive.Simple;
+using FuzzySharp.SimilarityRatio.Scorer.StrategySensitive.TokenAbbreviation;
+using FuzzySharp.SimilarityRatio.Scorer.StrategySensitive.TokenSet;
+using FuzzySharp.SimilarityRatio.Scorer.StrategySensitive.TokenSort;
 using NUnit.Framework;
 
 namespace FuzzySharp.Test.EvaluationTests
@@ -55,7 +60,7 @@ namespace FuzzySharp.Test.EvaluationTests
         public void EvaluateWeightedRatio()
         {
             var e1 = Fuzz.WeightedRatio("The quick brown fox jimps ofver the small lazy dog", "the quick brown fox jumps over the small lazy dog");
-            Assert.AreEqual(95, e1);
+            e1.Should().Be(95);
         }
 
         [Test]
@@ -170,7 +175,7 @@ namespace FuzzySharp.Test.EvaluationTests
             var ratio = Fuzz.TokenInitialismRatio(shorter, longer);
 
             // assert
-            Assert.IsTrue(ratio >= 0);
+            ratio.Should().BeGreaterOrEqualTo(0);
         }
     }
 }

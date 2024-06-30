@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace FuzzySharp.Baseline.Extractor
+namespace FuzzySharp.Extractor
 {
-    public class ExtractedResult<T> : IComparable<ExtractedResult<T>> 
+    public class ExtractedResult<T> : IComparable<ExtractedResult<T>>
     {
 
         public readonly T Value;
@@ -25,7 +25,7 @@ namespace FuzzySharp.Baseline.Extractor
 
         public int CompareTo(ExtractedResult<T> other)
         {
-            return Comparer<int>.Default.Compare(this.Score, other.Score);
+            return Comparer<int>.Default.Compare(Score, other.Score);
         }
 
         public override string ToString()

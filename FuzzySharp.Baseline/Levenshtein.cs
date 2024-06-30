@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using FuzzySharp.Baseline.Edits;
+using FuzzySharp.Edits;
 
-namespace FuzzySharp.Baseline
+namespace FuzzySharp
 {
     public static class Levenshtein
     {
@@ -64,10 +64,10 @@ namespace FuzzySharp.Baseline
             {
 
                 int ptrPrev = (i - 1) * len2;
-                int ptrC    = i       * len2;
-                int ptrEnd  = ptrC + len2 - 1;
+                int ptrC = i * len2;
+                int ptrEnd = ptrC + len2 - 1;
 
-                T   char1    = c1[p1 + i - 1];
+                T char1 = c1[p1 + i - 1];
                 int ptrChar2 = p2;
 
                 int x = i;
@@ -105,8 +105,8 @@ namespace FuzzySharp.Baseline
 
         private static EditOp[] EditOpsFromCostMatrix<T>(int len1, T[] c1, int p1, int o1,
                                                       int len2, T[] c2, int p2, int o2,
-                                                      int[] matrix) 
-            where T: IEquatable<T>
+                                                      int[] matrix)
+            where T : IEquatable<T>
         {
 
             int i, j, pos;
@@ -227,7 +227,7 @@ namespace FuzzySharp.Baseline
         }
 
         public static MatchingBlock[] GetMatchingBlocks<T>(T[] s1, T[] s2) where T : IEquatable<T>
-        { 
+        {
             return GetMatchingBlocks(s1.Length, s2.Length, GetEditOps(s1, s2));
         }
 
@@ -303,8 +303,8 @@ namespace FuzzySharp.Baseline
             MatchingBlock finalBlock = new MatchingBlock
             {
                 SourcePos = len1,
-                DestPos   = len2,
-                Length    = 0
+                DestPos = len2,
+                Length = 0
             };
 
             matchingBlocks[mb] = finalBlock;
@@ -466,7 +466,7 @@ namespace FuzzySharp.Baseline
 
             if (SourcePos < len1 || DestPos < len2)
             {
-                Debug.Assert(len1 -SourcePos == len2 - DestPos);
+                Debug.Assert(len1 - SourcePos == len2 - DestPos);
 
                 MatchingBlock mb = new MatchingBlock();
                 mb.SourcePos = SourcePos;
@@ -671,7 +671,7 @@ namespace FuzzySharp.Baseline
             return EditDistance(s1.ToCharArray(), s2.ToCharArray(), xcost);
         }
 
-        public static int EditDistance<T>(T[] c1, T[] c2, int xcost = 0) where T:  IEquatable<T>
+        public static int EditDistance<T>(T[] c1, T[] c2, int xcost = 0) where T : IEquatable<T>
         {
 
             int i;
@@ -895,8 +895,8 @@ namespace FuzzySharp.Baseline
 
         public static double GetRatio<T>(T[] input1, T[] input2) where T : IEquatable<T>
         {
-            int len1   = input1.Length;
-            int len2   = input2.Length;
+            int len1 = input1.Length;
+            int len2 = input2.Length;
             int lensum = len1 + len2;
 
             int editDistance = EditDistance(input1, input2, 1);

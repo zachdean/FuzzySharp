@@ -1,6 +1,7 @@
-﻿using System;
+﻿using FuzzySharp.SimilarityRatio.Scorer;
+using System;
 
-namespace FuzzySharp.Baseline.SimilarityRatio.Scorer.StrategySensitive
+namespace FuzzySharp.SimilarityRatio.Scorer.StrategySensitive
 {
     public abstract class StrategySensitiveScorerBase : ScorerBase
     {

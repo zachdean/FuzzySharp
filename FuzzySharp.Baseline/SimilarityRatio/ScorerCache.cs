@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using FuzzySharp.Baseline.SimilarityRatio.Scorer;
+using FuzzySharp.SimilarityRatio.Scorer;
 
-namespace FuzzySharp.Baseline.SimilarityRatio
+namespace FuzzySharp.SimilarityRatio
 {
     public static class ScorerCache
     {

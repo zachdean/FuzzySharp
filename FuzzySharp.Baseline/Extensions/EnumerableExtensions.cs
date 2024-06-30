@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using FuzzySharp.Baseline.Utils;
+using FuzzySharp.Utils;
 
-namespace FuzzySharp.Baseline.Extensions
+namespace FuzzySharp.Extensions
 {
     public static class EnumerableExtensions
     {

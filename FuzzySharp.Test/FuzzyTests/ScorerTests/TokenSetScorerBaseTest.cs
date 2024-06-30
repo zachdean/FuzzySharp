@@ -5,6 +5,7 @@ using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using FuzzySharp.SimilarityRatio.Scorer.StrategySensitive.TokenSet;
 
 namespace FuzzySharp.Test.FuzzyTests.ScorerTests
 {

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using FuzzySharp.Baseline.Edits;
+using FuzzySharp.Edits;
 
-namespace FuzzySharp.Baseline.SimilarityRatio.Strategy
+namespace FuzzySharp.SimilarityRatio.Strategy
 {
     internal class PartialRatioStrategy
     {
@@ -20,12 +20,12 @@ namespace FuzzySharp.Baseline.SimilarityRatio.Strategy
             if (input1.Length < input2.Length)
             {
                 shorter = input1;
-                longer  = input2;
+                longer = input2;
             }
             else
             {
                 shorter = input2;
-                longer  = input1;
+                longer = input1;
             }
 
             MatchingBlock[] matchingBlocks = Levenshtein.GetMatchingBlocks(shorter, longer);
@@ -37,7 +37,7 @@ namespace FuzzySharp.Baseline.SimilarityRatio.Strategy
                 int dist = matchingBlock.DestPos - matchingBlock.SourcePos;
 
                 int longStart = dist > 0 ? dist : 0;
-                int longEnd   = longStart + shorter.Length;
+                int longEnd = longStart + shorter.Length;
 
                 if (longEnd > longer.Length) longEnd = longer.Length;
 

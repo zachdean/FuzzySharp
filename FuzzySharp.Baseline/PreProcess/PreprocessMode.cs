@@ -1,4 +1,4 @@
-﻿namespace FuzzySharp.Baseline.PreProcess
+﻿namespace FuzzySharp.PreProcess
 {
     public enum PreprocessMode
     {

@@ -2,8 +2,9 @@
 using FuzzySharp.SimilarityRatio;
 using FuzzySharp.SimilarityRatio.Scorer.Composite;
 using FuzzySharp.SimilarityRatio.Scorer.StrategySensitive;
-using System;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("FuzzySharp.Benchmarks")]
 namespace FuzzySharp
 {
     public static class Fuzz
@@ -16,9 +17,10 @@ namespace FuzzySharp
         /// <param name="input1"></param>
         /// <param name="input2"></param>
         /// <returns></returns>
-        public static int Ratio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2)
+        public static int Ratio(string input1, string input2)
         {
-            return ScorerCache.Get<DefaultRatioScorer>().Score(input1, input2);
+            (input1, input2) = RunPreprocessor(input1, input2, PreprocessMode.Full);
+            return DefaultRatioScorer.ScoreStatic(input1, input2);
         }
 
         /// <summary>
@@ -29,9 +31,10 @@ namespace FuzzySharp
         /// <param name="input2"></param>
         /// <param name="preprocessMode"></param>
         /// <returns></returns>
-        public static int Ratio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2, PreprocessMode preprocessMode)
+        public static int Ratio(string input1, string input2, PreprocessMode preprocessMode)
         {
-            return ScorerCache.Get<DefaultRatioScorer>().Score(input1, input2, preprocessMode);
+            (input1, input2) = RunPreprocessor(input1, input2, preprocessMode);
+            return DefaultRatioScorer.ScoreStatic(input1, input2);
         }
         #endregion
 
@@ -44,7 +47,7 @@ namespace FuzzySharp
         /// <param name="input1"></param>
         /// <param name="input2"></param>
         /// <returns></returns>
-        public static int PartialRatio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2)
+        public static int PartialRatio(string input1, string input2)
         {
             return ScorerCache.Get<PartialRatioScorer>().Score(input1, input2);
         }
@@ -58,7 +61,7 @@ namespace FuzzySharp
         /// <param name="input2"></param>
         /// <param name="preprocessMode"></param>
         /// <returns></returns>
-        public static int PartialRatio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2, PreprocessMode preprocessMode)
+        public static int PartialRatio(string input1, string input2, PreprocessMode preprocessMode)
         {
             return ScorerCache.Get<PartialRatioScorer>().Score(input1, input2, preprocessMode);
         }
@@ -73,7 +76,7 @@ namespace FuzzySharp
         /// <param name="input1"></param>
         /// <param name="input2"></param>
         /// <returns></returns>
-        public static int TokenSortRatio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2)
+        public static int TokenSortRatio(string input1, string input2)
         {
             return ScorerCache.Get<TokenSortScorer>().Score(input1, input2);
         }
@@ -87,7 +90,7 @@ namespace FuzzySharp
         /// <param name="input2"></param>
         /// <param name="preprocessMode"></param>
         /// <returns></returns>
-        public static int TokenSortRatio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2, PreprocessMode preprocessMode)
+        public static int TokenSortRatio(string input1, string input2, PreprocessMode preprocessMode)
         {
             return ScorerCache.Get<TokenSortScorer>().Score(input1, input2, preprocessMode);
         }
@@ -100,7 +103,7 @@ namespace FuzzySharp
         /// <param name="input1"></param>
         /// <param name="input2"></param>
         /// <returns></returns>
-        public static int PartialTokenSortRatio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2)
+        public static int PartialTokenSortRatio(string input1, string input2)
         {
             return ScorerCache.Get<PartialTokenSortScorer>().Score(input1, input2);
         }
@@ -114,7 +117,7 @@ namespace FuzzySharp
         /// <param name="input2"></param>
         /// <param name="preprocessMode"></param>
         /// <returns></returns>
-        public static int PartialTokenSortRatio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2, PreprocessMode preprocessMode)
+        public static int PartialTokenSortRatio(string input1, string input2, PreprocessMode preprocessMode)
         {
             return ScorerCache.Get<PartialTokenSortScorer>().Score(input1, input2, preprocessMode);
         }
@@ -130,7 +133,7 @@ namespace FuzzySharp
         /// <param name="input1"></param>
         /// <param name="input2"></param>
         /// <returns></returns>
-        public static int TokenSetRatio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2)
+        public static int TokenSetRatio(string input1, string input2)
         {
             return ScorerCache.Get<TokenSetScorer>().Score(input1, input2);
         }
@@ -145,7 +148,7 @@ namespace FuzzySharp
         /// <param name="input2"></param>
         /// <param name="preprocessMode"></param>
         /// <returns></returns>
-        public static int TokenSetRatio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2, PreprocessMode preprocessMode)
+        public static int TokenSetRatio(string input1, string input2, PreprocessMode preprocessMode)
         {
             return ScorerCache.Get<TokenSetScorer>().Score(input1, input2, preprocessMode);
         }
@@ -159,7 +162,7 @@ namespace FuzzySharp
         /// <param name="input1"></param>
         /// <param name="input2"></param>
         /// <returns></returns>
-        public static int PartialTokenSetRatio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2)
+        public static int PartialTokenSetRatio(string input1, string input2)
         {
             return ScorerCache.Get<PartialTokenSetScorer>().Score(input1, input2);
         }
@@ -174,7 +177,7 @@ namespace FuzzySharp
         /// <param name="input2"></param>
         /// <param name="preprocessMode"></param>
         /// <returns></returns>
-        public static int PartialTokenSetRatio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2, PreprocessMode preprocessMode)
+        public static int PartialTokenSetRatio(string input1, string input2, PreprocessMode preprocessMode)
         {
             return ScorerCache.Get<PartialTokenSetScorer>().Score(input1, input2, preprocessMode);
         }
@@ -188,7 +191,7 @@ namespace FuzzySharp
         /// <param name="input1"></param>
         /// <param name="input2"></param>
         /// <returns></returns>
-        public static int TokenDifferenceRatio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2)
+        public static int TokenDifferenceRatio(string input1, string input2)
         {
             return ScorerCache.Get<TokenDifferenceScorer>().Score(input1, input2);
         }
@@ -201,7 +204,7 @@ namespace FuzzySharp
         /// <param name="input2"></param>
         /// <param name="preprocessMode"></param>
         /// <returns></returns>
-        public static int TokenDifferenceRatio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2, PreprocessMode preprocessMode)
+        public static int TokenDifferenceRatio(string input1, string input2, PreprocessMode preprocessMode)
         {
             return ScorerCache.Get<TokenDifferenceScorer>().Score(input1, input2, preprocessMode);
         }
@@ -213,7 +216,7 @@ namespace FuzzySharp
         /// <param name="input1"></param>
         /// <param name="input2"></param>
         /// <returns></returns>
-        public static int PartialTokenDifferenceRatio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2)
+        public static int PartialTokenDifferenceRatio(string input1, string input2)
         {
             return ScorerCache.Get<PartialTokenDifferenceScorer>().Score(input1, input2);
         }
@@ -226,7 +229,7 @@ namespace FuzzySharp
         /// <param name="input2"></param>
         /// <param name="preprocessMode"></param>
         /// <returns></returns>
-        public static int PartialTokenDifferenceRatio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2, PreprocessMode preprocessMode)
+        public static int PartialTokenDifferenceRatio(string input1, string input2, PreprocessMode preprocessMode)
         {
             return ScorerCache.Get<PartialTokenDifferenceScorer>().Score(input1, input2, preprocessMode);
         }
@@ -239,7 +242,7 @@ namespace FuzzySharp
         /// <param name="input1"></param>
         /// <param name="input2"></param>
         /// <returns></returns>
-        public static int TokenInitialismRatio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2)
+        public static int TokenInitialismRatio(string input1, string input2)
         {
             return ScorerCache.Get<TokenInitialismScorer>().Score(input1, input2);
         }
@@ -251,7 +254,7 @@ namespace FuzzySharp
         /// <param name="input2"></param>
         /// <param name="preprocessMode"></param>
         /// <returns></returns>
-        public static int TokenInitialismRatio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2, PreprocessMode preprocessMode)
+        public static int TokenInitialismRatio(string input1, string input2, PreprocessMode preprocessMode)
         {
             return ScorerCache.Get<TokenInitialismScorer>().Score(input1, input2, preprocessMode);
         }
@@ -262,7 +265,7 @@ namespace FuzzySharp
         /// <param name="input1"></param>
         /// <param name="input2"></param>
         /// <returns></returns>
-        public static int PartialTokenInitialismRatio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2)
+        public static int PartialTokenInitialismRatio(string input1, string input2)
         {
             return ScorerCache.Get<PartialTokenInitialismScorer>().Score(input1, input2);
         }
@@ -274,7 +277,7 @@ namespace FuzzySharp
         /// <param name="input2"></param>
         /// <param name="preprocessMode"></param>
         /// <returns></returns>
-        public static int PartialTokenInitialismRatio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2, PreprocessMode preprocessMode)
+        public static int PartialTokenInitialismRatio(string input1, string input2, PreprocessMode preprocessMode)
         {
             return ScorerCache.Get<PartialTokenInitialismScorer>().Score(input1, input2);
         }
@@ -289,7 +292,7 @@ namespace FuzzySharp
         /// <param name="input1"></param>
         /// <param name="input2"></param>
         /// <returns></returns>
-        public static int TokenAbbreviationRatio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2)
+        public static int TokenAbbreviationRatio(string input1, string input2)
         {
             return ScorerCache.Get<TokenAbbreviationScorer>().Score(input1, input2);
         }
@@ -303,7 +306,7 @@ namespace FuzzySharp
         /// <param name="input2"></param>
         /// <param name="preprocessMode"></param>
         /// <returns></returns>
-        public static int TokenAbbreviationRatio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2, PreprocessMode preprocessMode)
+        public static int TokenAbbreviationRatio(string input1, string input2, PreprocessMode preprocessMode)
         {
             return ScorerCache.Get<TokenAbbreviationScorer>().Score(input1, input2, preprocessMode);
         }
@@ -316,7 +319,7 @@ namespace FuzzySharp
         /// <param name="input1"></param>
         /// <param name="input2"></param>
         /// <returns></returns>
-        public static int PartialTokenAbbreviationRatio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2)
+        public static int PartialTokenAbbreviationRatio(string input1, string input2)
         {
             return ScorerCache.Get<PartialTokenAbbreviationScorer>().Score(input1, input2);
         }
@@ -330,7 +333,7 @@ namespace FuzzySharp
         /// <param name="input2"></param>
         /// <param name="preprocessMode"></param>
         /// <returns></returns>
-        public static int PartialTokenAbbreviationRatio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2, PreprocessMode preprocessMode)
+        public static int PartialTokenAbbreviationRatio(string input1, string input2, PreprocessMode preprocessMode)
         {
             return ScorerCache.Get<PartialTokenAbbreviationScorer>().Score(input1, input2, preprocessMode);
         }
@@ -343,7 +346,7 @@ namespace FuzzySharp
         /// <param name="input1"></param>
         /// <param name="input2"></param>
         /// <returns></returns>
-        public static int WeightedRatio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2)
+        public static int WeightedRatio(string input1, string input2)
         {
             return ScorerCache.Get<WeightedRatioScorer>().Score(input1, input2);
         }
@@ -355,10 +358,18 @@ namespace FuzzySharp
         /// <param name="input2"></param>
         /// <param name="preprocessMode"></param>
         /// <returns></returns>
-        public static int WeightedRatio(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2, PreprocessMode preprocessMode)
+        public static int WeightedRatio(string input1, string input2, PreprocessMode preprocessMode)
         {
             return ScorerCache.Get<WeightedRatioScorer>().Score(input1, input2, preprocessMode);
         }
         #endregion
+
+        private static (string input1, string input2) RunPreprocessor(string input1, string input2, PreprocessMode preprocessMode)
+        {
+            var preprocessor = StringPreprocessorFactory.GetPreprocessor(preprocessMode);
+            input1 = preprocessor(input1);
+            input2 = preprocessor(input2);
+            return (input1, input2);
+        }
     }
 }

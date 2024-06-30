@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FuzzySharp.Baseline.SimilarityRatio.Scorer.Generic
+namespace FuzzySharp.SimilarityRatio.Scorer.Generic
 {
     public interface IRatioScorer<in T> where T : IEquatable<T>
     {

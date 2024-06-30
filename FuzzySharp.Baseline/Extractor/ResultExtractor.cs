@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using FuzzySharp.Baseline.Extensions;
-using FuzzySharp.Baseline.SimilarityRatio.Scorer;
+using FuzzySharp.Extensions;
+using FuzzySharp.SimilarityRatio.Scorer;
 
-namespace FuzzySharp.Baseline.Extractor
+namespace FuzzySharp.Extractor
 {
     public static class ResultExtractor
     {
-        public static IEnumerable<ExtractedResult<T>> ExtractWithoutOrder<T>(T query, IEnumerable<T> choices, Func<T,string> processor, IRatioScorer scorer, int cutoff = 0)
+        public static IEnumerable<ExtractedResult<T>> ExtractWithoutOrder<T>(T query, IEnumerable<T> choices, Func<T, string> processor, IRatioScorer scorer, int cutoff = 0)
         {
             int index = 0;
             var processedQuery = processor(query);

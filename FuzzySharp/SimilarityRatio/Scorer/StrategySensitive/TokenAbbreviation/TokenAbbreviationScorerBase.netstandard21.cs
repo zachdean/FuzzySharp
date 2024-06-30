@@ -8,10 +8,10 @@ namespace FuzzySharp.SimilarityRatio.Scorer.StrategySensitive
 {
     public abstract class TokenAbbreviationScorerBase : StrategySensitiveScorerBase
     {
-        public override int Score(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2)
+        public override int Score(string input1, string input2)
         {
-            ReadOnlySpan<char> shorter;
-            ReadOnlySpan<char> longer;
+            string shorter;
+            string longer;
 
             if (input1.Length < input2.Length)
             {
@@ -30,8 +30,8 @@ namespace FuzzySharp.SimilarityRatio.Scorer.StrategySensitive
             if (lenRatio < 1.5) return 0;
 
             // numbers can't be abbreviations for other numbers, though that would be hilarious. "Yes, 4 - as in 4,238"
-            var tokensLonger = longer.SplitLetterOnlyWords();
-            var tokensShorter = shorter.SplitLetterOnlyWords();
+            var tokensLonger = longer.AsSpan().SplitLetterOnlyWords();
+            var tokensShorter = shorter.AsSpan().SplitLetterOnlyWords();
 
             // more than 4 tokens and it's probably not an abbreviation (and could get costly)
             if (tokensShorter.Count > 4)
@@ -81,7 +81,7 @@ namespace FuzzySharp.SimilarityRatio.Scorer.StrategySensitive
         /// <param name="s1"></param>
         /// <param name="s2"></param>
         /// <returns></returns>
-        private static bool StringContainsInOrder(ReadOnlySpan<char> s1, ReadOnlySpan<char> s2)
+        private static bool StringContainsInOrder(string s1, string s2)
         {
             if (s1.Length < s2.Length) return false;
             int s2_idx = 0;

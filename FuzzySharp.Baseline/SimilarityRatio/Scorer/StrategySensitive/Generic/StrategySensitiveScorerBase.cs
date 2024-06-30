@@ -1,7 +1,7 @@
 ﻿using System;
-using FuzzySharp.Baseline.SimilarityRatio.Scorer.Generic;
+using FuzzySharp.SimilarityRatio.Scorer.Generic;
 
-namespace FuzzySharp.Baseline.SimilarityRatio.Scorer.StrategySensitive.Generic
+namespace FuzzySharp.SimilarityRatio.Scorer.StrategySensitive.Generic
 {
     public abstract class StrategySensitiveScorerBase<T> : ScorerBase<T> where T : IEquatable<T>
     {

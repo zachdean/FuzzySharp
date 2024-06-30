@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 
-namespace FuzzySharp.Baseline.PreProcess
+namespace FuzzySharp.PreProcess
 {
     internal class StringPreprocessorFactory
     {

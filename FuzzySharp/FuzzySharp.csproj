@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <!--<TargetFrameworks>netcoreapp2.0;netcoreapp2.1;netstandard1.6;netstandard2.0;netstandard2.1;net45;net46;net461;net5.0;net6.0</TargetFrameworks>-->
-	    <TargetFrameworks>netcoreapp2.0;netcoreapp2.1;netstandard1.6;netstandard2.0;netstandard2.1;net5.0;net6.0</TargetFrameworks>
+	    <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
         <!--<TargetFrameworks>netstandard2.1</TargetFrameworks>-->
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Jacob Bayer</Authors>
@@ -23,11 +23,11 @@
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
-		<TargetSpans Condition="'$(TargetFramework)' == 'netstandard2.1' or '$(TargetFramework)' == 'netcoreapp2.1' or '$(TargetFramework)' == 'net5.0' or '$(TargetFramework)' == 'net6.0' ">true</TargetSpans>
+		<TargetSpans Condition="'$(TargetFramework)' == 'netstandard2.1' or '$(TargetFramework)' == 'netcoreapp2.1' or '$(TargetFramework)' == 'net5.0' or '$(TargetFramework)' == 'net6.0'  or '$(TargetFramework)' == 'net8.0' ">true</TargetSpans>
     </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.0.0" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All" />
   </ItemGroup>
 
 

@@ -3,34 +3,11 @@ using System.Text;
 
 namespace FuzzySharp.PreProcess
 {
-    public delegate ReadOnlySpan<char> StringProcessorDelegate(ReadOnlySpan<char> input);
-
     internal class StringPreprocessorFactory
     {
-        private static ReadOnlySpan<char> Default(ReadOnlySpan<char> input)
+        private static string Default(string input)
         {
-            var trimmedInput = input.Trim();
-            var output = new char[trimmedInput.Length];
-
-            for (var i = 0; i < trimmedInput.Length; i++)
-            {
-                var c = trimmedInput[i];
-                if (char.IsLetterOrDigit(c) || c == ' ')
-                {
-                    output[i] = char.ToLower(c);
-                }
-                else
-                {
-                    output[i] = ' ';
-                }
-            }
-
-            return output;
-        }
-
-        internal static string Default(string input)
-        {
-            var trimmedInput = input.Trim();
+            var trimmedInput = input.AsSpan().Trim();
             var output = new StringBuilder(trimmedInput.Length);
 
             foreach (var c in trimmedInput)
@@ -48,7 +25,7 @@ namespace FuzzySharp.PreProcess
             return output.ToString();
         }
 
-        public static StringProcessorDelegate GetPreprocessor(PreprocessMode mode)
+        public static Func<string, string> GetPreprocessor(PreprocessMode mode)
         {
             switch (mode)
             {

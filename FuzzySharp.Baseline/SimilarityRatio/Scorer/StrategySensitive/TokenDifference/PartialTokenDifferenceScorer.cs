@@ -1,7 +1,7 @@
 ﻿using System;
-using FuzzySharp.Baseline.SimilarityRatio.Strategy.Generic;
+using FuzzySharp.SimilarityRatio.Strategy.Generic;
 
-namespace FuzzySharp.Baseline.SimilarityRatio.Scorer.StrategySensitive.TokenDifference
+namespace FuzzySharp.SimilarityRatio.Scorer.StrategySensitive.TokenDifference
 {
     public class PartialTokenDifferenceScorer : TokenDifferenceScorerBase
     {

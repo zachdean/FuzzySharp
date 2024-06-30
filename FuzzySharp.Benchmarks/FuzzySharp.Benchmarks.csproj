@@ -2,17 +2,21 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>net6.0;netcoreapp3.1;net5.0</TargetFrameworks>
+    <TargetFrameworks>net8.0;</TargetFrameworks>
 	  <IsPackable>false</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.13.2" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.13.12" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FuzzySharp.Baseline\FuzzySharp.Baseline.csproj" />
-    <ProjectReference Include="..\FuzzySharp\FuzzySharp.csproj" />
+	  <ProjectReference Include="..\FuzzySharp\FuzzySharp.csproj" >
+		  <Aliases >V3</Aliases>
+	  </ProjectReference>
+	  <ProjectReference Include="..\FuzzySharp.Baseline\FuzzySharp.Baseline.csproj" >
+		  <Aliases >Baseline</Aliases>
+	  </ProjectReference>
   </ItemGroup>
 
 </Project>

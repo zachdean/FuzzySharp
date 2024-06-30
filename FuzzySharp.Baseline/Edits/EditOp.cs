@@ -1,4 +1,4 @@
-﻿namespace FuzzySharp.Baseline.Edits
+﻿namespace FuzzySharp.Edits
 {
     public enum EditType
     {

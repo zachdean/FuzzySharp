@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using FuzzySharp.Baseline.Extractor;
-using FuzzySharp.Baseline.PreProcess;
-using FuzzySharp.Baseline.SimilarityRatio;
-using FuzzySharp.Baseline.SimilarityRatio.Scorer;
-using FuzzySharp.Baseline.SimilarityRatio.Scorer.Composite;
+using FuzzySharp.Extractor;
+using FuzzySharp.PreProcess;
+using FuzzySharp.SimilarityRatio;
+using FuzzySharp.SimilarityRatio.Scorer;
+using FuzzySharp.SimilarityRatio.Scorer.Composite;
 
-namespace FuzzySharp.Baseline
+namespace FuzzySharp
 {
     public static class Process
     {
@@ -25,9 +25,9 @@ namespace FuzzySharp.Baseline
         /// <param name="cutoff"></param>
         /// <returns></returns>
         public static IEnumerable<ExtractedResult<string>> ExtractAll(
-            string query, 
-            IEnumerable<string> choices, 
-            Func<string, string> processor = null, 
+            string query,
+            IEnumerable<string> choices,
+            Func<string, string> processor = null,
             IRatioScorer scorer = null,
             int cutoff = 0)
         {
@@ -47,7 +47,7 @@ namespace FuzzySharp.Baseline
         /// <param name="cutoff"></param>
         /// <returns></returns>
         public static IEnumerable<ExtractedResult<T>> ExtractAll<T>(
-            T query, 
+            T query,
             IEnumerable<T> choices,
             Func<T, string> processor,
             IRatioScorer scorer = null,
@@ -96,11 +96,11 @@ namespace FuzzySharp.Baseline
         /// <param name="cutoff"></param>
         /// <returns></returns>
         public static IEnumerable<ExtractedResult<T>> ExtractTop<T>(
-            T query, 
+            T query,
             IEnumerable<T> choices,
             Func<T, string> processor,
             IRatioScorer scorer = null,
-            int limit = 5, 
+            int limit = 5,
             int cutoff = 0)
         {
             if (scorer == null) scorer = s_defaultScorer;
@@ -126,7 +126,7 @@ namespace FuzzySharp.Baseline
             int cutoff = 0)
         {
             if (processor == null) processor = s_defaultStringProcessor;
-            if (scorer == null) scorer       = s_defaultScorer;
+            if (scorer == null) scorer = s_defaultScorer;
             return ResultExtractor.ExtractSorted(query, choices, processor, scorer, cutoff);
         }
 
@@ -162,14 +162,14 @@ namespace FuzzySharp.Baseline
         /// <param name="cutoff"></param>
         /// <returns></returns>
         public static ExtractedResult<string> ExtractOne(
-            string query, 
+            string query,
             IEnumerable<string> choices,
             Func<string, string> processor = null,
             IRatioScorer scorer = null,
             int cutoff = 0)
         {
             if (processor == null) processor = s_defaultStringProcessor;
-            if (scorer == null) scorer       = s_defaultScorer;
+            if (scorer == null) scorer = s_defaultScorer;
             return ResultExtractor.ExtractOne(query, choices, processor, scorer, cutoff);
         }
 
@@ -189,7 +189,7 @@ namespace FuzzySharp.Baseline
             IRatioScorer scorer = null,
             int cutoff = 0)
         {
-            if (scorer == null) scorer       = s_defaultScorer;
+            if (scorer == null) scorer = s_defaultScorer;
             return ResultExtractor.ExtractOne(query, choices, processor, scorer, cutoff);
         }
 

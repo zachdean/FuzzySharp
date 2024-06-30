@@ -3,24 +3,24 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FuzzySharp.Baseline.Utils
+namespace FuzzySharp.Utils
 {
     public abstract class Heap<T> : IEnumerable<T>
     {
         private const int InitialCapacity = 0;
-        private const int GrowFactor      = 2;
-        private const int MinGrow         = 1;
+        private const int GrowFactor = 2;
+        private const int MinGrow = 1;
 
         private int _capacity = InitialCapacity;
-        private T[] _heap     = new T[InitialCapacity];
-        private int _tail     = 0;
+        private T[] _heap = new T[InitialCapacity];
+        private int _tail = 0;
 
         public int Count => _tail;
 
         public int Capacity => _capacity;
 
-        protected          Comparer<T> Comparer { get; }
-        protected abstract bool        Dominates(T x, T y);
+        protected Comparer<T> Comparer { get; }
+        protected abstract bool Dominates(T x, T y);
 
         protected Heap() : this(Comparer<T>.Default)
         {
@@ -104,7 +104,7 @@ namespace FuzzySharp.Baseline.Utils
         {
             int dominatingNode = i;
             dominatingNode = GetDominating(YoungChild(i), dominatingNode);
-            dominatingNode = GetDominating(OldChild(i),   dominatingNode);
+            dominatingNode = GetDominating(OldChild(i), dominatingNode);
 
             return dominatingNode;
         }
@@ -142,9 +142,9 @@ namespace FuzzySharp.Baseline.Utils
         private void Grow()
         {
             int newCapacity = _capacity * GrowFactor + MinGrow;
-            var newHeap     = new T[newCapacity];
+            var newHeap = new T[newCapacity];
             Array.Copy(_heap, newHeap, _capacity);
-            _heap     = newHeap;
+            _heap = newHeap;
             _capacity = newCapacity;
         }
 

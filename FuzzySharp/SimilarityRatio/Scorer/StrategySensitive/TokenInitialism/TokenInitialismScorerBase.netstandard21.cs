@@ -7,10 +7,10 @@ namespace FuzzySharp.SimilarityRatio.Scorer.StrategySensitive
 {
     public abstract class TokenInitialismScorerBase : StrategySensitiveScorerBase
     {
-        public override int Score(ReadOnlySpan<char> input1, ReadOnlySpan<char> input2)
+        public override int Score(string input1, string input2)
         {
-            ReadOnlySpan<char> shorter;
-            ReadOnlySpan<char> longer;
+            string shorter;
+            string longer;
 
             if (input1.Length < input2.Length)
             {
@@ -29,7 +29,7 @@ namespace FuzzySharp.SimilarityRatio.Scorer.StrategySensitive
             if (lenRatio < 3) return 0;
 
             var sb = new StringBuilder(longer.Length);
-            foreach (var c in longer.SplitWhiteSpace().Select(w => w[0]))
+            foreach (var c in longer.AsSpan().SplitWhiteSpace().Select(w => w[0]))
             {
                 sb.Append(c);
             }

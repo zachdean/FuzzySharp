@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace FuzzySharp.Baseline.SimilarityRatio.Strategy.Generic
+namespace FuzzySharp.SimilarityRatio.Strategy.Generic
 {
     internal class DefaultRatioStrategy<T> where T : IEquatable<T>
     {
@@ -10,7 +10,7 @@ namespace FuzzySharp.Baseline.SimilarityRatio.Strategy.Generic
             {
                 return 0;
             }
-            return (int) Math.Round(100 * Levenshtein.GetRatio(input1, input2));
+            return (int)Math.Round(100 * Levenshtein.GetRatio(input1, input2));
         }
     }
 }

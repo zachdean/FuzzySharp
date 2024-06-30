@@ -1,9 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using FuzzySharp.Baseline.Utils;
+using FuzzySharp.SimilarityRatio.Scorer.StrategySensitive;
+using FuzzySharp.Utils;
 
-namespace FuzzySharp.Baseline.SimilarityRatio.Scorer.StrategySensitive.TokenAbbreviation
+namespace FuzzySharp.SimilarityRatio.Scorer.StrategySensitive.TokenAbbreviation
 {
     public abstract class TokenAbbreviationScorerBase : StrategySensitiveScorerBase
     {
@@ -15,15 +16,15 @@ namespace FuzzySharp.Baseline.SimilarityRatio.Scorer.StrategySensitive.TokenAbbr
             if (input1.Length < input2.Length)
             {
                 shorter = input1;
-                longer  = input2;
+                longer = input2;
             }
             else
             {
                 shorter = input2;
-                longer  = input1;
+                longer = input1;
             }
 
-            double lenRatio = ((double)longer.Length) / shorter.Length;
+            double lenRatio = (double)longer.Length / shorter.Length;
 
             // if longer isn't at least 1.5 times longer than the other, then its probably not an abbreviation
             if (lenRatio < 1.5) return 0;
@@ -68,10 +69,10 @@ namespace FuzzySharp.Baseline.SimilarityRatio.Scorer.StrategySensitive.TokenAbbr
                         sum += score;
                     }
                 }
-                allScores.Add((int) (sum / fewerTokens.Length));
+                allScores.Add((int)(sum / fewerTokens.Length));
             }
-            
-            return allScores.Count==0?0:allScores.Max();
+
+            return allScores.Count == 0 ? 0 : allScores.Max();
         }
 
         /// <summary>

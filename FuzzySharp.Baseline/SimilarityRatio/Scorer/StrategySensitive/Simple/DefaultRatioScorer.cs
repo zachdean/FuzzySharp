@@ -1,7 +1,7 @@
 ﻿using System;
-using FuzzySharp.Baseline.SimilarityRatio.Strategy;
+using FuzzySharp.SimilarityRatio.Strategy;
 
-namespace FuzzySharp.Baseline.SimilarityRatio.Scorer.StrategySensitive.Simple
+namespace FuzzySharp.SimilarityRatio.Scorer.StrategySensitive.Simple
 {
     public class DefaultRatioScorer : SimpleRatioScorerBase
     {
